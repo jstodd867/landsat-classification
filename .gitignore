@@ -1,1 +1,5 @@
 .ipynb_checkpoints
+.DS_Store
+src/__pycache__
+tmp/.DS_Store
+tmp/model/.DS_Store

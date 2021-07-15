@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 import matplotlib.cm as cm
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 def class_counts(y):
     labels, labels_inverse, label_counts = np.unique(y, return_inverse=True, return_counts=True)
@@ -53,15 +54,20 @@ def class_bar_plot(ax, y, title, xlabel, ylabel, plot_type='v', bar_color ='turq
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
 
+def plot_cm(y_test, yhat, classes, ax=None):
+    # Confusion Matrix
+    conf_mx = confusion_matrix(y_test, yhat, labels=classes)
+    cm_display = ConfusionMatrixDisplay(conf_mx, display_labels=classes).plot(cmap='plasma', ax=ax)
+
 if __name__ == '__main__':
     train, test = np.loadtxt('data/sat.trn'), np.loadtxt('data/sat.tst')
     y_train, y_test = train[:,-1], test[:,-1]
 
     fig, ax =plt.subplots()
-    class_bar_plot(ax, y_train, 'Occurrences of Each Class in Train Set', 'Class', 'Number of Occurrences')
+    class_bar_plot(ax, y_test, 'Occurrences of Each Class in Test Set', 'Class', 'Number of Occurrences')
     ax.set_xticklabels(['','1 - red soil', '2 - cotton crop', '3 - grey soil', '4 - damp grey soil', '5 - soil w/veg.', '6 - mixture', '7 - very damp grey soil'], rotation=45)
     plt.tight_layout()
-  
+    #plt.savefig('imgs/test_class_count.png')
     plt.show()
    
     plt.close()
