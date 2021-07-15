@@ -20,7 +20,7 @@ The dataset contains 4435 training samples and 2000 test samples.  Each sample i
 ## Classification Models
 
 ### Model Performance Summary
-
+<img src="https://github.com/jstodd867/landsat-classification/blob/main/imgs/confusion_matrices.png">
 
 ## Conclusions
 
