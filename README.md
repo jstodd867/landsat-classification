@@ -11,7 +11,7 @@ NASA has launched 8 out of 9 Landsat satellites to provide continous imagery of 
 <li>Forest Management.</li>
 
 ## Data
-The data are available on the <a href="https://archive.ics.uci.edu/ml/datasets/Statlog+%28Landsat+Satellite%29">UCI Machine Learning Repository</a>.  The data files are also contained in the data directory of this repository.
+The data are available on the <a href="https://archive.ics.uci.edu/ml/datasets/Statlog+%28Landsat+Satellite%29">UCI Machine Learning Repository</a>.  The data files are also contained in the <a href="https://github.com/jstodd867/landsat-classification/tree/main/data">data directory</a> of this repository.
 
 The dataset contains 4435 training samples and 2000 test samples.  Each sample is a 36 element feature vector that contains a 3x3x4 pixel neighborhood across 4 channels.
 
