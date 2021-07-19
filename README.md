@@ -39,14 +39,28 @@ Next, histograms of intensity values for the center pixels of each channel were 
 ## Classification Models
 
 ### Baseline Model
-To provide a baseline for performance, a simple model was created that predicts the class of each center pixel as the one that has the smallest Euclidean distance to the mean class feature vector.
+To provide a baseline for performance, a simple model was created that predicts the class of each center pixel as the one that has the smallest Euclidean distance to the mean class feature vector.  This model resulted in a decent baseline accuracy of 76.85%.
 
 ### Random Forest Classifier
+A random forest model was built and tuned to the dataset.  A gridsearch was performed to find the optimal hyperparameters.  The following parameters were included in the gridsearch:
+
+<li>n_estimators</li>
+<li>max_depth</li>
+<li>min_samples_split</li>
+<li>min_samples_leaf</li>
 
 ### Deep Neural Network
+A deep neural network was built and tuned to the dataset.  A gridsearch was performed to find the optimal hyperparameters.  The following parameters were included in the gridsearch:
+
+<li>learning rate</li>
+<li>number of hidden layers</li>
+<li>number of units in hidden layers</li>
+<li>activation functions of hidden layers</li>
+<li>batch size</li>
+<li>number of epochs</li>
 
 ### Model Performance Summary
 <img src="https://github.com/jstodd867/landsat-classification/blob/main/imgs/confusion_matrices.png">
 
 ## Conclusions
-
+Both the Random Forest and Neural Network classifiers achieved approximately 91% accuracy on the test set.  The largest misclassification errors are understandably in categories that are very similar (e.g., damp grey soil and very damp grey soil).  Training on more data and/or ensembling the 2 different classifiers may yield improvements.
