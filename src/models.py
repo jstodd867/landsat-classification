@@ -65,12 +65,15 @@ def create_model(X, n_classes, n_hidden=3, opt='Adam', hidden_units=100, drop_ou
     hidden_layer = Dense(units=hidden_units,
                     input_dim=n_feats,
                     kernel_initializer='constant',
-                    activation=activ)
+                    activation='softsign')
 
     # Add first hidden layer, if required
     if n_hidden>0:
-        model.add(hidden_layer)
-        model.add(Dropout(drop_out))
+        model.add(Dense(units=hidden_units,
+                    input_dim=n_feats,
+                    kernel_initializer='uniform',
+                    activation=activ))
+        #model.add(Dropout(drop_out))
     else:
         hidden_units=n_feats
 
@@ -83,8 +86,10 @@ def create_model(X, n_classes, n_hidden=3, opt='Adam', hidden_units=100, drop_ou
     # Add hidden layers to model, if required
     if n_hidden>1:
         for _ in np.arange(1,n_hidden):
-            model.add(Dense(units=hidden_units,kernel_initializer='constant', activation=activ))
-            model.add(Dropout(drop_out))
+            model.add(Dense(units=hidden_units,
+                    kernel_initializer='uniform',
+                    activation=activ))
+            #model.add(Dropout(drop_out))
 
     # Add output layer 
     model.add(outputlayer)
