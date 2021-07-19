@@ -48,6 +48,7 @@ A random forest model was built and tuned to the dataset.  A gridsearch was perf
 <li>max_depth</li>
 <li>min_samples_split</li>
 <li>min_samples_leaf</li>
+
 ### Deep Neural Network
 A deep neural network was built and tuned to the dataset.  A gridsearch was performed to find the optimal hyperparameters.  The following parameters were included in the gridsearch:
 
@@ -57,6 +58,7 @@ A deep neural network was built and tuned to the dataset.  A gridsearch was perf
 <li>activation functions of hidden layers</li>
 <li>batch size</li>
 <li>number of epochs</li>
+
 ### Model Performance Summary
 <img src="https://github.com/jstodd867/landsat-classification/blob/main/imgs/confusion_matrices.png">
 
