@@ -27,6 +27,17 @@ The goal is to correctly predict which class each center pixel belongs to, from 
 <li>Soil with vegetation</li>
 <li>Very damp grey soil</li>
 
+## Code Organization
+
+The code is in the <a href="https://github.com/jstodd867/landsat-classification/tree/main/src">src directory</a> and is organized as follows:
+
+<li>data.py:  helper functions to load and pre-process data</li>
+<li>models.py:  class and helper functions for various models</li>
+<li>plots.py:  helper functions for common plots</li>
+<li>run_models.py:  main script to run to re-produce results</li>
+
+There is also a jupyter notebook in the root directory that contains the same code as in the run_models.py script.
+
 ## Exploratory Data Analysis
 
 To get a sense of the class balance, the number of instances of each class was plotted, shown below.
