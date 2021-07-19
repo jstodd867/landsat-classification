@@ -13,7 +13,9 @@ NASA has launched 8 out of 9 Landsat satellites to provide continous imagery of 
 ## Data
 The data are available on the <a href="https://archive.ics.uci.edu/ml/datasets/Statlog+%28Landsat+Satellite%29">UCI Machine Learning Repository</a>.  The data files are also contained in the <a href="https://github.com/jstodd867/landsat-classification/tree/main/data">data directory</a> of this repository.
 
-The dataset contains 4435 training samples and 2000 test samples.  Each sample is a 36 element feature vector that contains a 3x3x4 pixel neighborhood across 4 channels.
+The dataset contains 4435 training samples and 2000 test samples.  Each sample is a 36 element feature vector that contains a 3x3x4 pixel neighborhood across 4 channels, as illustrated in the figure below.
+
+<img src="https://github.com/jstodd867/landsat-classification/blob/main/imgs/samples.png" width ="350" height=250>
 
 ## Objective
 The goal is to correctly predict which class each center pixel belongs to, from the following class labels:
