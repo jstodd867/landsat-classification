@@ -68,7 +68,7 @@ if __name__ == '__main__':
     # Perform gridsearch for optimal neural network parameters
     opt_nn_model = keras.wrappers.scikit_learn.KerasClassifier(build_fn=models.create_model, X=X_trn_scaled, n_classes=6, opt=opt)
     # Set grid search parameters
-    nn_param_grid = dict(epochs=[700], batch_size=[20], n_hidden=[1,2], hidden_units=[20,35, 50], activ=['sigmoid','exponential'])
+    nn_param_grid = dict(epochs=[700], batch_size=[20], n_hidden=[1,2], hidden_units=[20, 50, 75], activ=['sigmoid','exponential'])
     # Create grid and execute search
     grid = GridSearchCV(estimator=opt_nn_model, param_grid=nn_param_grid, n_jobs=-1, cv=[(slice(None), slice(None))])
     grid_result = grid.fit(X_trn_scaled, y_trn_1hot)
