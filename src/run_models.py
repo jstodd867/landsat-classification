@@ -48,15 +48,17 @@ if __name__ == '__main__':
 
     y_test_predict = base_model.predict(X_test[:,16:20])
     print(f'Baseline Model Accuracy: {accuracy_score(y_test,y_test_predict)}')
+    b_fscore = f1_score(y_test, y_test_predict, average='weighted') # Calculate F-score
+    print(f'Baseline F-score: {b_fscore}')
 
     # Scale X data and one-hot encode y data for use in neural network
     X_trn_scaled, X_test_scaled, y_trn_1hot, y_test_1hot = data.prep_data_nn(X_train, X_test, y_train, y_test)
 
     # Set parameters for neural network architecture and training
     opt = keras.optimizers.Adam(learning_rate=0.0003)
-    hidden_units = 100
+    hidden_units = 75
     n_classes = 6
-    n_hidden = 1
+    n_hidden = 2
     es = keras.callbacks.EarlyStopping(monitor='loss', patience=100) # Set early stopping
 
     # Fit and evaluate neural network
@@ -75,9 +77,11 @@ if __name__ == '__main__':
     # Print results
     print(f'Best Neural Network Parameters from Gridsearch: {grid_result.best_params_}')  #print parameters of best neural network
     grid_result.best_estimator_.model.evaluate(X_test_scaled, y_test_1hot)  # Calculate performance on unseen test data
+    
     # Predict y values for test set
     grid_result.best_estimator_.classes_= np.array([1,2,3,4,5,7]) #reset class labels
     yhat_nn= grid_result.best_estimator_.predict(X_test_scaled)
+    nn_fscore = f1_score(y_test, yhat_nn, average='weighted')
 
     # Random Forest Classifer
     rf_clf = RandomForestClassifier(n_estimators=100, max_depth=50, random_state=0, class_weight='balanced')
@@ -101,7 +105,9 @@ if __name__ == '__main__':
     print(f'Average Validation Accuracy: {rf_grid_result.best_score_}')
 
     y_rf = rf_grid_result.best_estimator_.predict(X_test)
+    rf_fscore = f1_score(y_test, y_rf, average='weighted')
     print(f'Random Forest Test Accuracy Score: {accuracy_score(y_test, y_rf)}')
+    print(f'Random Forest Test F Score: {rf_fscore}')
 
     # Compare model performance
     # Compare confusion matrices
@@ -111,7 +117,10 @@ if __name__ == '__main__':
     plots.plot_cm(y_test, y_rf, rf_grid_result.best_estimator_.classes_, axs[1])
     plots.plot_cm(y_test, yhat_nn, grid_result.best_estimator_.classes_, axs[2])
     # Label subplots
-    axs[0].set_title(f'Baseline\n(Accuracy = {np.round(accuracy_score(y_test, y_test_predict),2)})')
-    axs[1].set_title(f'Random Forest\n(Accuracy = {np.round(accuracy_score(y_test, y_rf),2)})')
-    axs[2].set_title(f'Neural Network\n(Accuracy = {np.round(accuracy_score(y_test, yhat_nn),2)})')
+    axs[0].set_title(f'Baseline\n(Accuracy = {np.round(accuracy_score(y_test, y_test_predict)*100,2)}%\n\
+                    F-Score = {np.round(b_fscore,4)})')
+    axs[1].set_title(f'Random Forest\n(Accuracy = {np.round(accuracy_score(y_test, y_rf)*100,2)}%\n\
+                    F-Score = {np.round(rf_fscore,4)})')
+    axs[2].set_title(f'Neural Network\n(Accuracy = {np.round(accuracy_score(y_test, yhat_nn)*100,2)}%\n\
+                    F-Score = {np.round(nn_fscore,4)})')
     plt.show()
