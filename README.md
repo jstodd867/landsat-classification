@@ -36,8 +36,6 @@ The code is in the <a href="https://github.com/jstodd867/landsat-classification/
 <li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/plots.py">plots.py</a>:  helper functions for common plots</li>
 <li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/run_models.py">run_models.py</a>:  main script to run to re-produce results</li>
 
-There is also a jupyter notebook in the root directory that contains the same code as in the run_models.py script.
-
 ## Exploratory Data Analysis
 
 To get a sense of the class balance, the number of instances of each class was plotted, shown below.
