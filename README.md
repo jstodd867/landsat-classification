@@ -31,10 +31,10 @@ The goal is to correctly predict which class each center pixel belongs to, from 
 
 The code is in the <a href="https://github.com/jstodd867/landsat-classification/tree/main/src">src directory</a> and is organized as follows:
 
-<li>data.py:  helper functions to load and pre-process data</li>
-<li>models.py:  class and helper functions for various models</li>
-<li>plots.py:  helper functions for common plots</li>
-<li>run_models.py:  main script to run to re-produce results</li>
+<li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/data.py">data.py</a>:  helper functions to load and pre-process data</li>
+<li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/models.py">models.py</a>:  class and helper functions for various models</li>
+<li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/plots.py">plots.py</a>:  helper functions for common plots</li>
+<li><a href="https://github.com/jstodd867/landsat-classification/blob/main/src/run_models.py">run_models.py</a>:  main script to run to re-produce results</li>
 
 There is also a jupyter notebook in the root directory that contains the same code as in the run_models.py script.
 
@@ -72,8 +72,10 @@ A deep neural network was built and tuned to the dataset.  A gridsearch was perf
 <li>batch size</li>
 <li>number of epochs</li>
 
-### Model Performance Summary
+### Results - Model Performance Summary
+The accuracy of each of the models are listed at the top of each subplot, below.
 <img src="https://github.com/jstodd867/landsat-classification/blob/main/imgs/confusion_matrices.png">
+The Random Forest classifier and the deep neural network achieved significantly improved accuracy (91%) beyond that of the baseline model.  However, both models had a notable amount of misclassification errors, mostly between classes 4 (damp grey soil) and 7 (very damp grey soil) and classes 3 (grey soil) and 4 (damp grey soil).  Looking at the labels of these classes, the likely reason for the misclassifications is evident:  all 3 classes are variants of grey soil with different levels of dampness.  The remaining classes are actually different types of material (e.g., red soil).
 
 ## Conclusions
-Both the Random Forest and Neural Network classifiers achieved approximately 91% accuracy on the test set.  The largest misclassification errors are understandably in categories that are very similar (e.g., damp grey soil and very damp grey soil).  Training on more data and/or ensembling the 2 different classifiers may yield improvements.
+Both the Random Forest and Neural Network classifiers achieved approximately 91% accuracy on the test set.  The largest misclassification errors are understandably in categories that are very similar (grey soil, damp grey soil, and very damp grey soil).  Training on more data and/or ensembling the 2 different classifiers may yield improvements.
