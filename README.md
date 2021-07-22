@@ -81,6 +81,7 @@ Both the Random Forest and Neural Network classifiers achieved approximately ~91
 ### Next Steps
 
 <li>Training on more data,</li>
+<li>using additional models (e.g., gradient boosting),</li>
 <li>and/or ensembling the different classifiers</li>
 
 may yield improvements.
